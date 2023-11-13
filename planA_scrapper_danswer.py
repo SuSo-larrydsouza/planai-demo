@@ -447,3 +447,8 @@ class WebConnector():
             playwright.stop()
             yield doc_batch
 
+if __name__ == "__main__":
+    web_connector = WebConnector(base_url="https://www.example.com")
+    for batch in web_connector.load_from_state():
+        for document in batch:
+            print(document)
