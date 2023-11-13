@@ -461,8 +461,12 @@ class WebConnector():
             yield doc_batch
 
 
+import json
+
 if __name__ == "__main__":
     web_connector = WebConnector(base_url="https://plana.earth/sitemap-en.xml", web_connector_type=WEB_CONNECTOR_VALID_SETTINGS.SITEMAP.value)
-    for batch in web_connector.load_from_state():
-        for document in batch:
-            print(document)
+    with open('plana_content.jsonl', 'w') as f:
+        for batch in web_connector.load_from_state():
+            for document in batch:
+                json.dump(document.__dict__, f)
+                f.write('\n')
