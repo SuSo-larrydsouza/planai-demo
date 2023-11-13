@@ -428,13 +428,18 @@ class WebConnector():
                             to_visit.append(link)
 
                 parsed_html = web_html_cleanup(soup, self.mintlify_cleanup)
+                
+                metadata_content = soup.find_all("div", class_="academy-tag-passive w-dyn-item")
+                metadata = {}
+                if metadata_content:
+                    metadata = {"content": [tag.text for tag in metadata_content]}
 
                 doc_batch.append(
                     Document(
                         id=current_url,
                         text=parsed_html.cleaned_text,
                         source=current_url,
-                        metadata={},
+                        metadata=metadata,
                     )
                 )
 
