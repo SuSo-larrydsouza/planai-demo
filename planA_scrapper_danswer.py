@@ -13,6 +13,7 @@ from typing import Tuple
 from typing import cast
 from urllib.parse import urljoin
 from urllib.parse import urlparse
+from uuid import uuid4
 
 import bs4
 import requests
@@ -436,7 +437,7 @@ class WebConnector():
 
                 doc_batch.append(
                     Document(
-                        id=current_url,
+                        id=str(uuid4()),
                         text=parsed_html.cleaned_text,
                         source=current_url,
                         metadata=metadata,
@@ -465,7 +466,7 @@ import json
 
 if __name__ == "__main__":
     web_connector = WebConnector(base_url="https://plana.earth/sitemap-en.xml", web_connector_type=WEB_CONNECTOR_VALID_SETTINGS.SITEMAP.value)
-    with open('plana_content.jsonl', 'w') as f:
+    with open('plana_content_2.jsonl', 'w') as f:
         for batch in web_connector.load_from_state():
             for document in batch:
                 json.dump(document.__dict__, f)
