@@ -466,7 +466,7 @@ import json
 
 if __name__ == "__main__":
     web_connector = WebConnector(base_url="https://plana.earth/sitemap-en.xml", web_connector_type=WEB_CONNECTOR_VALID_SETTINGS.SITEMAP.value)
-    with open('plana_content_2.jsonl', 'w') as f:
+    with open('plana_website_content.jsonl', 'w') as f:
         for batch in web_connector.load_from_state():
             for document in batch:
                 json.dump(document.__dict__, f)
