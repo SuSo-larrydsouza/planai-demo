@@ -10,12 +10,9 @@ from canopy.models.api_models import (
 )
 from canopy.models.data_models import UserMessage, AssistantMessage
 from canopy.tokenizer import Tokenizer
-from openai import OpenAI
 
 st.title("♻️ PlanAI")
 
-# Set OpenAI API key from Streamlit secrets
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"], base_url="http://localhost:8000/v1")
 planAI_avatar = "img/planA_logo.jpg"
 
 # Initialize canopy library
